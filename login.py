@@ -68,7 +68,7 @@ def launchbrowser(context):
     screencap(txtval)
 
 @given(u'user opened the page')
-def step_impl(context):
+def openpage(context):
     URL = "https://practicetestautomation.com/practice-test-login/"
     context.driver.get(URL)
     context.driver.maximize_window()
@@ -78,7 +78,7 @@ def step_impl(context):
 
 
 @given(u'user entered username "{username}"')
-def step_impl(context, username):
+def enterusername(context, username):
     # Scroll to the username field
     wait = WebDriverWait(context.driver, 10)
     element = wait.until(expected_conditions.visibility_of_element_located((By.XPATH, "//input[@id='username']")))
@@ -90,7 +90,7 @@ def step_impl(context, username):
     sleep(2)
 
 @given(u'user entered password "{pwd}"')
-def step_impl(context, pwd):
+def enterpwd(context, pwd):
     #Navigate to Password field
     element = context.driver.find_element(By.XPATH, "//input[@id='password']")
     # Decode password
@@ -102,7 +102,7 @@ def step_impl(context, pwd):
     sleep(2)
 
 @when(u'clicked on Submit button')
-def step_impl(context):
+def clicksubmit(context):
     # Locate and click on the submit button
     element = context.driver.find_element(By.XPATH, "//button[@id='submit']")
     txtval = 'When user clicked Submit button'
@@ -111,7 +111,7 @@ def step_impl(context):
     sleep(2)
 
 @then(u'new page URL will be displayed')
-def step_impl(context):
+def checkurl(context):
     #Compare the expected URL redirect
     targetURL = 'https://practicetestautomation.com/logged-in-successfully/'
     assert targetURL==context.driver.current_url
@@ -120,7 +120,7 @@ def step_impl(context):
     screencap(txtval)
 
 @then(u'new page contains expected text "{text}"')
-def step_impl(context, text):
+def checkpagetext(context, text):
     # Locate the text identifier in the page for successful login
     wait = WebDriverWait(context.driver, 10)
     element = wait.until(expected_conditions.visibility_of_element_located((By.XPATH, "//h1[text()[contains(.,text)]]")))
@@ -128,7 +128,7 @@ def step_impl(context, text):
     highlight(element,txtval)
 
 @then(u'Log Out button is displayed')
-def step_impl(context):
+def checklogout(context):
     # Locate the logout button
     element = context.driver.find_element(By.XPATH, "//a[@class='wp-block-button__link has-text-color has-background has-very-dark-gray-background-color']")
     txtval = 'And Log Out button is displayed'
